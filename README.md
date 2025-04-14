@@ -8,7 +8,12 @@ Vous devez implémenter le système de chargement de la configuration des divers
 - Python >= 3.12
 - installer le package "PySide6"
   - Pyside6 est un package open-source basé sur PyQt pour la conception d'interfaces graphiques.
-
+    - Vous pouvez l'installer directement dans PyCharm en utiliasnt l'onglet "Python Packages"
+    - Ou vous pouvez l'installer en ligne de commande:
+      - `pip install PySide6`
+- Écrire vos noms et utilisateurs github dans la section en haut du fichier bataillerobots.py
+- À faire en équipe de 2 ou 3 personnes
+  - Tout travail solo sera refusé et se verra attribuer la note de 0.
 
 # Explications
 Le module bataillerobots.py contient toutes les classes nécessaires à la grande bataille des robots.
@@ -31,7 +36,7 @@ Contient les propriétés:
         - l'angle se calcule dans la direction horaire au lieu de la direction antihoraire
             - par exemple, un Sprite avec une direction de 90 degrés sera aligné vers le bas 
 ```
-Vous n'avez rien à modifier dans cette classe.
+
 
 ## Classe Robot
 Classe abstraite représentant un robot.
@@ -90,9 +95,49 @@ Contient les propriétés:
 ```
 
 # Requis
-On vous a mis en charge d'implémenter le chargement de la configuration des Robots.
+On vous a mis en charge d'implémenter le chargement de la configuration des Robots et de certaines logiques du Jeu.
 Malheureusement pour vous, c'est une compétition internationale et les sources de données ne sont pas standardisées.
-Vous devrez donc utiliser plusieurs méthodes de lecture de la configuration des robots.
+Vous devrez donc utiliser plusieurs méthodes de lecture de la configuration des robots. Une méthode qui génère une configuration par défaut
+vous est fournie. Ceci vous montre comment ajouter les instructions à la liste d'instructions du robot.
+
+# SpriteJeu
+```
+- Implémenter les accesseurs pos_x, pos_y et direction dans la classe SpriteJeu
+  - Ces accesseurs doivent retourner la valeur de la propriété protégée correspondante
+  - Ces accesseurs doivent être décorés avec le décorateur @property
+```
+
+# Robot
+```
+- Implémenter les accesseurs nom, qpixmap, sante, vitesse, instructions, puissance_projectile, vitesse_projectile et projectiles dans la classe Robot
+  - Ces accesseurs doivent retourner la valeur de la propriété protégée correspondante
+  - Ces accesseurs doivent être décorés avec le décorateur @property
+```
+# Jeu
+```
+- À implémenter:
+  - Implémenter la méthode statique generer_emplacements_depart()
+    - Cette méthode génère une liste contenant deux tuples (x, y, direction)
+    - Le robot de gauche devra être positionné:
+      - x: entre 75 et 125
+      - y: entre 350 et 400
+      - direction: 0
+    - Le robot de droite devra être positionné:
+        - x: entre 600 et 650
+        - y: entre 350 et 400
+        - direction: 
+  - Dans la méthode mise_a_jour_jeu(self) de la classe Jeu, implémenter le déplacement du projectile. Dans la section TODO, ajouter le code
+    qui va calculer la nouvelle position du projectile. Le projectile se déplace dans la direction indiquée par la propriété direction du projectile à
+    une vitesse donnée par la variable vitesse du projectile. Ne pas toucher au reste du code dans la méthode.
+  - Implémenter la méthode verifier_collision(self, projectile: Projectile)
+    - Cette méthode vérifie si le projectile est en collision avec un robot
+      - Pour cela, vous devez itérér sur la liste des robots et vérifier si le projectile est en collisionavec un robot
+         - Si le projectile est en collision avec un robot, il doit être retiré de la liste des projectiles du robot 
+         qui l'a tiré et de la liste des projectiles du jeu.
+        - La santé du robot touché doit être diminuée de la puissance du projectile.
+
+
+```
 
 ## Les Robots
 
@@ -105,7 +150,7 @@ RandyBot est chaotique. Il est imprévisible, car il effectue des rotations au h
     - Enlever la configuration par défaut
     - Sa configuration se trouve dans le fichier "robots/randybot/config.json"
   - rotation(self)
-    - il assigne la direction à un float ayant une valeur entre 0 et 360
+    - il assigne aléatoirement la direction à un float ayant une valeur entre 0 et 360
 ```
 ## MathBot
 MathBot se fie sur une fonction mathématique pour décider de sa rotation.
@@ -137,7 +182,7 @@ MathBot se fie sur une fonction mathématique pour décider de sa rotation.
       - assigne la direction à la valeur (float)
 ```
 ## CampeurBot
-CampeurBot est un campeur. Il ne bouge pas et préfère juste faire sa rotation de façon méthodique et tirer
+CampeurBot est un campeur. Il ne bouge pas et préfère juste faire sa rotation de façon méthodique et tirer partout autour de lui
 ```
 - À implémenter:
   - charger_configuration(self)
@@ -165,9 +210,7 @@ SuperBot croit dans l'équilibre des statistiques.
   - Dans la méthode deplacer(self) de la classe Robot, implémenter le déplacement du robot. Dans la section TODO, ajouter le code
     qui va calculer la nouvelle position du robot. Le robot se déplace dans la direction indiquée par la propriété direction du robot à
     une vitesse donnée par la variable vitesse du robot.
-  - Dans la méthode mise_a_jour_jeu(self) de la classe Jeu, implémenter le déplacement du projectile. Dans la section TODO, ajouter le code
-    qui va calculer la nouvelle position du projectile. Le projectile se déplace dans la direction indiquée par la propriété direction du projectile à
-    une vitesse donnée par la variable vitesse du projectile.
+ 
 ```
 
 # Évaluation
@@ -195,6 +238,17 @@ Possibilité de points bonis qui peuvent ajouter jusqu'à 5%. Il est donc possib
         - où instruction est l'instruction exécutée
       - Générer seulement si self.__etape_jeu <= 30
 ```
+
+## Bugs
+```
+- Si vous trouvez un bug non-rapporté dans le code fourni, vous avez aussi droit à un point boni
+```
+
+## Tests Unitaires
+```
+Un jeu de tests unitaires est fourni dans le fichier testbataillerobots.py
+ - Vous pouvez les exécuter en utilisant PyCharm ou en utilisant la ligne de commande:
+ - `python -m unittest testbataillerobots.py`
 
 ## À propos des TODO
 Pour vous aider, les TODOs ont été ajoutés pour vous permettre de consulter la liste dans PyCharm.

@@ -69,29 +69,7 @@ class SpriteJeu(ABC):
         self._pos_y = pos_y
         self._direction = direction
 
-    @property
-    def pos_x(self):
-        return self._pos_x
-
-    @pos_x.setter
-    def pos_x(self, pos_x):
-        self._pos_x = pos_x
-
-    @property
-    def pos_y(self):
-        return self._pos_y
-
-    @pos_y.setter
-    def pos_y(self, pos_y):
-        self._pos_y = pos_y
-
-    @property
-    def direction(self):
-        return self._direction
-
-    @direction.setter
-    def direction(self, direction):
-        self._direction = direction
+    # TODO: Implémenter les accesseurs et mutateurs pour pos_x, pos_y et direction en utilisant le décorateur @property
 
     @abstractmethod
     def dessiner(self, canevas: QLabel):
@@ -103,7 +81,7 @@ class Robot(SpriteJeu, ABC):
     def __init__(self, pos_x: int, pos_y: int, direction: float):
         super().__init__(pos_x, pos_y, direction)
         self._nom = "Robot"
-        # "https://www.flaticon.com/free-icons/chatbot"
+
         self._qpixmap = self.get_pixmap_image()
         self._qpixmap.scaled(QSize(64, 64))
         self._sante = 0
@@ -113,69 +91,7 @@ class Robot(SpriteJeu, ABC):
         self._vitesse_projectile = 0
         self._projectiles = []
 
-    @property
-    def vitesse(self):
-        return self._vitesse
-
-    @vitesse.setter
-    def vitesse(self, vitesse):
-        self._vitesse = vitesse
-
-    @property
-    def projectiles(self):
-        return self._projectiles
-
-    @projectiles.setter
-    def projectiles(self, projectiles):
-        self._projectiles = projectiles
-
-    @property
-    def vitesse_projectile(self):
-        return self._vitesse_projectile
-
-    @vitesse_projectile.setter
-    def vitesse_projectile(self, vitesse_projectile):
-        self._vitesse_projectile = vitesse_projectile
-
-    @property
-    def puissance_projectile(self):
-        return self._puissance_projectile
-
-    @puissance_projectile.setter
-    def puissance_projectile(self, puissance_projectile):
-        self._puissance_projectile = puissance_projectile
-
-    @property
-    def instructions(self) -> deque:
-        return self._instructions
-
-    @instructions.setter
-    def instructions(self, instructions: deque):
-        self._instructions = instructions
-
-    @property
-    def nom(self):
-        return self._nom
-
-    @nom.setter
-    def nom(self, value):
-        self._nom = value
-
-    @property
-    def qpixmap(self):
-        return self._qpixmap
-
-    @qpixmap.setter
-    def qpixmap(self, value):
-        self._qpixmap = value
-
-    @property
-    def sante(self):
-        return self._sante
-
-    @sante.setter
-    def sante(self, value):
-        self._sante = value
+    # TODO : Implémenter les accesseurs et mutateurs pour nom, qpixmap, sante, vitesse, instructions, puissance_projectile, vitesse_projectile et projectiles
 
     def charger_configuration_defaut(self):
         self.sante = 80
@@ -257,6 +173,7 @@ class RandyBot(Robot):
     def charger_configuration(self):
         self.charger_configuration_defaut()
 
+    # "https://www.flaticon.com/free-icons/chatbot"
     def get_pixmap_image(self):
         return QPixmap("./images/robot.png")
 
@@ -297,7 +214,7 @@ class SuperBot(Robot):
         self.charger_configuration_defaut()
 
     def get_pixmap_image(self):
-        return QPixmap("./images/robot.png")
+        return QPixmap("./images/robot3.png")
 
 
 class Projectile(SpriteJeu):
@@ -394,11 +311,10 @@ class Jeu:
 
     @staticmethod
     def generer_emplacements_depart():
-        # (x, y, direction)
-        gauche = (random.randint(75, 125), random.randint(350, 400), 0)
-        droit = (random.randint(600, 650), random.randint(350, 400), 180)
+        # TODO: Générer des emplacements de départ aléatoires
 
-        return [gauche, droit]
+
+        return []
 
     def mise_a_jour_jeu(self):
         if self.__etape_jeu % 3 == 0:
@@ -422,13 +338,11 @@ class Jeu:
         self.__etape_jeu += 1
 
     def verifier_collision(self, projectile: Projectile):
-        for robot in self.__robots:
-            if (projectile.pos_x + 32 in range(robot.pos_x, robot.pos_x + 64) and projectile.pos_y + 32 in
-                    range(robot.pos_y, robot.pos_y + 64)):
-                # on diminue la santé du robot touché
-                robot.sante -= projectile.puissance
-                print(f"{robot.nom} touché! Santé {robot.sante}")
+        # TODO Implémenter la vérification de collision entre le projectile et les robots
+        pass
 
+
+    # Boucle principale de jeu. Sera exécuté jsuqu'a`la fin de la partie
     def boucle_jeu(self):
 
         if self.__termine:
