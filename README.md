@@ -125,7 +125,7 @@ vous est fournie. Ceci vous montre comment ajouter les instructions à la liste 
     - Le robot de droite devra être positionné:
         - x: entre 600 et 650
         - y: entre 350 et 400
-        - direction: 
+        - direction: 180
   - Dans la méthode mise_a_jour_jeu(self) de la classe Jeu, implémenter le déplacement du projectile. Dans la section TODO, ajouter le code
     qui va calculer la nouvelle position du projectile. Le projectile se déplace dans la direction indiquée par la propriété direction du projectile à
     une vitesse donnée par la variable vitesse du projectile. Ne pas toucher au reste du code dans la méthode.
