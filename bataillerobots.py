@@ -20,7 +20,7 @@ class ChampBataille(QMainWindow):
 
     def __init__(self):
         super().__init__()
-        self.setWindowTitle("La grande bataille de robots 2024")
+        self.setWindowTitle("La grande bataille de robots 2026")
         self.widget_central = QWidget()
         self.setCentralWidget(self.widget_central)
 
@@ -350,8 +350,8 @@ class Jeu:
             return
 
         self.mise_a_jour_jeu()
-        # "https://stockcake.com/i/charred-earth-texture_238671_45779"
-        arriere_plan = QPixmap("./images/sol.jpg")
+        # https://live.staticflickr.com/3077/2774065770_d0582a1cff_b.jpg
+        arriere_plan = QPixmap("./images/arene.png")
         arriere_plan.scaled(QSize(Jeu.LARGEUR, Jeu.HAUTEUR))
         pixmap = arriere_plan
         self.dessiner_robots(pixmap)
