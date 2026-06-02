@@ -32,7 +32,7 @@ Contient les propriétés:
         - int: la position en y sur le champ de bataille
         - l'axe des y est inversé, les valeurs positives sont vers le bas
     - direction
-        - int: la direction vers laquelle le Sprite est aligné en degré
+        - float: la direction vers laquelle le Sprite est aligné en degré
         - l'angle se calcule dans la direction horaire au lieu de la direction antihoraire
             - par exemple, un Sprite avec une direction de 90 degrés sera aligné vers le bas 
 ```
@@ -215,11 +215,11 @@ SuperBot ne croit pas dans l'égalité des chances, ses statistiques sont supér
 Ce travail pratique compte pour 25% de la note finale et fait partie de l'épreuve terminale de cours.
 
 La répartition des points est comme suit:
-  - Implémentation RandyBot: 22 pts
-  - Implémentation MathBot: 22 pts
-  - Implémentation CampeurBot: 22 pts
-  - Implémentation SuperBot: 22 pts
-  - Autres requis: 12 pts
+  - Implémentation RandyBot:  pts
+  - Implémentation MathBot: pts
+  - Implémentation CampeurBot: pts
+  - Implémentation SuperBot: pts
+  - Autres requis: pts
 
 Des points seront enlevés pour le non-respect des PEP-008
 Possibilité de points bonis qui peuvent ajouter jusqu'à 10%, il est donc possible d'avoir 110/100

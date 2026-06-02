@@ -362,7 +362,7 @@ class Jeu:
 
         if self.__partie_nulle:
             painter = QPainter(canevas)
-            painter.fillRect(0, 0, Jeu.LARGEUR, Jeu.HAUTEUR)
+            painter.fillRect(0, 0, Jeu.LARGEUR, Jeu.HAUTEUR, QColorConstants.Gray)
             painter.drawText(200, 250, "Partie Nulle!")
             painter.end()
         else:

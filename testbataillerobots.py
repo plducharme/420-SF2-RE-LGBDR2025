@@ -123,7 +123,7 @@ class TestBatailleRobots(unittest.TestCase):
         projectile_y = projectile.pos_y + int(robot.vitesse_projectile * math.sin(math.radians(projectile.direction)))
         jeu.mise_a_jour_jeu()
         self.assertEqual(projectile.pos_x, projectile_x)
-        self.assertEqual(projectile.pos_x, projectile_y)
+        self.assertEqual(projectile.pos_y, projectile_y)
 
 
     @staticmethod
